@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biling-deployment
+spec:
+  selector:
+    matchLabels:
+      app: biling
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: biling
+    spec:
+      containers:
+      - name: biling
+        image: biling:v0.0.1
+        env:
+          - name: json_path
+            value: /opt/json-file
+          - name: BILING_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: biling-configmap
+                key: biling.port
+        ports:
+          - containerPort: 8000

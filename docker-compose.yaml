@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  biling:
+    image: biling:v0.0.1
+    ports: 
+      - "8000:8000"
+    volumes:
+      - '/Users/mohammad/Desktop/sotoon sumer/biling/json-file:/opt/json-file'
+    container_name: biling
+    environment:
+      json_path: /opt/json-file
+
+
+     
